@@ -1,0 +1,137 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --surface: #121212;
+  --surface-elevated: #1a1a1a;
+  --void: #000000;
+  --muted: #121212;
+  --muted-foreground: #a8a8a8;
+  --platinum: #ececec;
+  --silver: #c0c0c0;
+  --accent: #c9a86a;
+  --accent-soft: #e6c7a0;
+  --accent-foreground: #0a0a0a;
+  --border: rgba(236, 236, 236, 0.1);
+  --border-strong: rgba(236, 236, 236, 0.22);
+  --ring: #c9a86a;
+  --success: #57c98a;
+  --warning: #d1a65f;
+  --destructive: #e06f6f;
+  --radius: 0.5rem;
+
+  --motion-fast: 180ms;
+  --motion-base: 260ms;
+  --motion-slow: 380ms;
+  --ease-precise: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[data-motion="immersive"] {
+  --motion-fast: 220ms;
+  --motion-base: 320ms;
+  --motion-slow: 400ms;
+}
+
+[data-motion="reduced"] {
+  --motion-fast: 1ms;
+  --motion-base: 1ms;
+  --motion-slow: 1ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  :root {
+    --motion-fast: 1ms;
+    --motion-base: 1ms;
+    --motion-slow: 1ms;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-elevated: var(--surface-elevated);
+  --color-void: var(--void);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-platinum: var(--platinum);
+  --color-silver: var(--silver);
+  --color-accent: var(--accent);
+  --color-accent-soft: var(--accent-soft);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-border: var(--border);
+  --color-border-strong: var(--border-strong);
+  --color-ring: var(--ring);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-destructive: var(--destructive);
+
+  --font-display: var(--font-orbitron), "Orbitron", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-inter), "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-body: var(--font-exo), "Exo 2", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-jetbrains), "JetBrains Mono", ui-monospace, monospace;
+
+  --radius-sm: calc(var(--radius) - 2px);
+  --radius-md: var(--radius);
+  --radius-lg: calc(var(--radius) + 4px);
+}
+
+@layer base {
+  * {
+    border-color: var(--border);
+  }
+  html {
+    -webkit-tap-highlight-color: transparent;
+  }
+  body {
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+}
+
+@utility qyx-gridline {
+  background-image:
+    linear-gradient(to right, rgba(236, 236, 236, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(236, 236, 236, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+@utility transition-precise {
+  transition-duration: var(--motion-base);
+  transition-timing-function: var(--ease-precise);
+}
+
+@utility safe-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+@utility no-scrollbar {
+  scrollbar-width: none;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+@keyframes qyx-rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.qyx-rise {
+  animation: qyx-rise var(--motion-slow) var(--ease-precise) both;
+}

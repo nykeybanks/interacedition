@@ -1,0 +1,12 @@
+{
+  "name": "QYX20 Interact Edition",
+  "short_name": "QYX20 Interact",
+  "description": "QYX20 Interact Edition by QuantumYield — full-screen navigation and Email Studio.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0A0A0A",
+  "theme_color": "#0A0A0A",
+  "icons": [
+    { "src": "/brand/q-emblem-silver-metallic.png", "sizes": "185x82", "type": "image/png" }
+  ]
+}
